@@ -8,3 +8,26 @@
 Сделать вывод исходной строки, но каждое слово должно начинаться с заглавной буквы.
 Необходимо использовать написанную ранее функцию int_func().
 """
+
+
+def cap_one_word(word):
+    """
+    Функция делает первый символ слова прописным
+    :param word: слово из латинских букв
+    :return: возвращает слово, где первая буква становится прописной
+    """
+    return word.capitalize()
+
+
+def cap_all_words(str_line):
+    """
+    Функция каждое слово введеной строки начинающимся с прописной буквы
+    В реализации используется функция cap_one_word
+    :param str_line: строка слов, разделенных пробелом
+    :return: возвращает строку, где каждое слово начинается с прописной буквы
+    """
+    return ' '.join(list(map(cap_one_word, str_line.split())))
+
+
+print(cap_one_word('python'))
+print(cap_all_words('python is an interpreted, high-level and general-purpose programming language.'))

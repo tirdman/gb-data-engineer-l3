@@ -4,3 +4,61 @@
 При решении задания необходимо обойтись без встроенной функции возведения числа в степень!
 ВНИМАНИЕ: использование встроенной функции = задание не принято
 """
+
+
+def my_power1(x, y):
+    """
+    Функция возведения в степень с помощью рекурсии
+    :param x: действительное положительное число
+    :param y: целое отрицательное число
+    :return: x в степени y
+    """
+    if y == 0:
+        return 1
+    if y < 0:
+        return 1 / my_power1(x, -y)
+    if y % 2 == 0:
+        return my_power1(x, y // 2) * my_power1(x, y // 2)
+    else:
+        return my_power1(x, y - 1) * x
+
+
+def my_power2(x, y):
+    """
+    Функция возведения в степень без рекурсии
+    :param x: действительное положительное число
+    :param y: целое отрицательное число
+    :return: x в степени y
+    """
+    res = 1
+    for i in range(abs(y)):
+        res *= x
+    if y >= 0:
+        return res
+    else:
+        return 1 / res
+
+
+while True:
+    try:
+        num_in1 = float(input('Введите действительное положительное число: '))
+        if num_in1 <= 0:
+            print('Вы ввели неположительное число')
+            continue
+
+        num_in2 = int(input('Введите целое отрицательное число: '))
+        if num_in2 >= 0:
+            print('Вы ввели неотрицательное число')
+            continue
+
+    except ValueError:
+        print("Вы ввели неверное число.")
+        continue
+    else:
+        break
+
+
+print(f'Результат с помощью встроенной функции pow: {pow(num_in1, num_in2)}')
+print()
+print(f'Результат с помощью способа 1: {my_power1(num_in1, num_in2)}')
+print(f'Результат с помощью способа 2: {my_power2(num_in1, num_in2)}')
